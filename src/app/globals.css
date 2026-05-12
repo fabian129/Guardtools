@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-warm-bg: #EAE8E2;
+    --color-warm-bg-alt: #F2F0EB;
+    --color-dark-bg: #1c1917;
+    --color-dark-bg-alt: #292524;
+    --font-dm: 'DM Sans', sans-serif;
+    --font-sans: 'Inter', system-ui, sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--color-warm-bg);
+    color: #292524;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: #292524;
+    color: #F2F0EB;
+  }
+
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 3px; }
+}
+
+@layer utilities {
+  .font-dm { font-family: var(--font-dm); }
+}
+
+/* ── Reveal Animation ── */
+@keyframes revealFlow {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.98);
+    filter: blur(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.reveal-item {
+  opacity: 0;
+  will-change: transform, opacity, filter;
+}
+
+.reveal-active {
+  animation: revealFlow 1s cubic-bezier(0.2, 0.6, 0.2, 1) both;
+}
+
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+
+/* ── Logo Scroll ── */
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+.animate-scroll {
+  animation: scroll 40s linear infinite;
+}
